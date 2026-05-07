@@ -1,59 +1,169 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🔔 Reminder System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A simple but powerful reminder system built with Laravel. Create reminders, get notified via email, and manage everything through a clean admin panel.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 💡 What does it do?
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Ever forget something important? This app lets you:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Create reminders with a title, note, and a date/time
+- Get an **email notification** automatically when the time comes
+- Even if the server was down, **you'll still get your reminder** — it won't be skipped
+- Admins can manage all reminders from a beautiful dashboard
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Built With
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Laravel** — PHP framework
+- **Filament** — Admin panel
+- **Laravel Queues** — Background email jobs
+- **Laravel Sanctum** — API authentication
+- **MySQL** — Database
+- **Pest** — Testing
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ⚙️ Installation
 
-### Premium Partners
+### 1. Clone the project
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+git clone https://github.com/your-username/reminder-system.git
+cd reminder-system
+```
 
-## Contributing
+### 2. Install dependencies
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+```
 
-## Code of Conduct
+### 3. Setup environment
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+### 4. Configure your `.env` file
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=reminder_system
+DB_USERNAME=root
+DB_PASSWORD=your_password
 
-## License
+MAIL_MAILER=smtp
+MAIL_HOST=your_mail_host
+MAIL_PORT=587
+MAIL_USERNAME=your_email
+MAIL_PASSWORD=your_password
+MAIL_FROM_ADDRESS=your_email
+MAIL_FROM_NAME="Reminder System"
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 5. Run migrations
+
+```bash
+php artisan migrate
+```
+
+### 6. Create admin user
+
+```bash
+php artisan make:filament-user
+```
+or you can go to url /admin/register for manual registration
+
+### 7. Start the server
+
+```bash
+php artisan serve
+```
+
+---
+
+## 🔌 API Endpoints
+
+All endpoints require a **Sanctum token** in the header:
+```
+Authorization: Bearer your_token_here
+```
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/reminders` | Get all your reminders |
+| POST | `/api/reminders` | Create a new reminder |
+| GET | `/api/reminders/{id}` | Get a single reminder |
+| PUT | `/api/reminders/{id}` | Update a reminder |
+| DELETE | `/api/reminders/{id}` | Delete a reminder |
+
+### Example Request (Create Reminder)
+
+```json
+POST /api/reminders
+
+{
+    "title": "Call mom",
+    "note": "Don't forget to wish her happy birthday!",
+    "remind_at": "2026-05-08 10:00:00"
+}
+```
+
+---
+
+## 🖥️ Admin Panel
+
+Visit `/admin` to access the admin dashboard.
+
+- Login with your Filament admin credentials
+- View all reminders from all users
+- Create, edit, and delete reminders
+- Filter by sent/pending status
+
+---
+
+## 📧 How the Email Job Works
+
+This is the heart of the system:
+
+1. A **scheduled job** runs every minute in the background
+2. It looks for reminders where the time has passed **and** the email hasn't been sent yet
+3. It sends the email and marks the reminder as **sent**
+4. If the server was down and a reminder was missed — **don't worry!** When the server comes back up, it will still send the email because `is_sent` is still `false`
+
+### To run the scheduler locally:
+
+```bash
+php artisan schedule:work
+```
+
+### To run the queue worker:
+
+```bash
+php artisan queue:work
+```
+
+---
+
+## 🧪 Running Tests
+
+```bash
+php artisan test
+```
+---
+
+## 👨‍💻 Author
+
+Built by **Yas** as part of a technical evaluation for a Junior Laravel Developer position.
+ 
+> *"AI was used as a tool to assist development — all logic and decisions were understood and implemented by the developer."*
+
+Built by **Yas** as part of a technical evaluation for a Junior Laravel Developer position.
+
+> *"AI was used as a tool to assist development — all logic and decisions were understood and implemented by the developer."*
