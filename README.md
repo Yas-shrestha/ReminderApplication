@@ -31,7 +31,7 @@ Ever forget something important? This app lets you:
 ### 1. Clone the project
 
 ```bash
-git clone https://github.com/your-username/reminder-system.git
+git clone https://github.com/Yas-shrestha/ReminderApplication.git
 cd reminder-system
 ```
 
