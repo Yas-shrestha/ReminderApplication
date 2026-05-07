@@ -17,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Filters\TernaryFilter;
 
 class ReminderResource extends Resource
 {
@@ -38,7 +39,14 @@ class ReminderResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return RemindersTable::configure($table);
+        return RemindersTable::configure($table)
+            ->filters([
+                TernaryFilter::make('isSent')
+                    ->label('Sent Status')
+                    ->trueLabel('Sent')
+                    ->falseLabel('Not Sent')
+                    ->placeholder('All'),
+            ]);
     }
 
     public static function getRelations(): array
