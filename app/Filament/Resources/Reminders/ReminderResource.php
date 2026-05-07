@@ -57,6 +57,7 @@ class ReminderResource extends Resource
             'edit' => EditReminder::route('/{record}/edit'),
         ];
     }
+    // Override the default query to only show reminders of the authenticated user
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

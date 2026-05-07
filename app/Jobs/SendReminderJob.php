@@ -31,7 +31,7 @@ class SendReminderJob implements ShouldQueue
         Reminder::query()
             ->where('isSent', false)        // not already sent
             ->where('remind_at', '<=', now()) // due or missed
-            ->with('user')                    // eager load user for email
+            ->with('user')
             ->each(function (Reminder $reminder) {
                 Mail::to($reminder->user->email)
                     ->send(new ReminderMail($reminder));

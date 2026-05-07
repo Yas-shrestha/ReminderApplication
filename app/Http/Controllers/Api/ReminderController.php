@@ -13,6 +13,8 @@ class ReminderController extends Controller
      */
     public function index(Request $request)
     {
+        //Used eloquent relationship to get the reminders of the authenticated user
+        
         $reminder = $request->user()->reminders()->get();
         return response()->json($reminder);
     }
@@ -36,6 +38,8 @@ class ReminderController extends Controller
      */
     public function show(Reminder $reminder, Request $request)
     {
+        //Check if the reminder belongs to the authenticated user 
+        
         if ($reminder->user_id !== $request->user()->id) {
             return response()->json(['message' => 'Forbidden'], 403);
         }

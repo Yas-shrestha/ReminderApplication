@@ -78,6 +78,7 @@ php artisan migrate
 ```bash
 php artisan make:filament-user
 ```
+
 or you can go to url /admin/register for manual registration
 
 ### 7. Start the server
@@ -91,17 +92,18 @@ php artisan serve
 ## 🔌 API Endpoints
 
 All endpoints require a **Sanctum token** in the header:
+
 ```
 Authorization: Bearer your_token_here
 ```
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/reminders` | Get all your reminders |
-| POST | `/api/reminders` | Create a new reminder |
-| GET | `/api/reminders/{id}` | Get a single reminder |
-| PUT | `/api/reminders/{id}` | Update a reminder |
-| DELETE | `/api/reminders/{id}` | Delete a reminder |
+| Method | Endpoint              | Description            |
+| ------ | --------------------- | ---------------------- |
+| GET    | `/api/reminders`      | Get all your reminders |
+| POST   | `/api/reminders`      | Create a new reminder  |
+| GET    | `/api/reminders/{id}` | Get a single reminder  |
+| PUT    | `/api/reminders/{id}` | Update a reminder      |
+| DELETE | `/api/reminders/{id}` | Delete a reminder      |
 
 ### Example Request (Create Reminder)
 
@@ -156,14 +158,11 @@ php artisan queue:work
 ```bash
 php artisan test
 ```
+
 ---
 
 ## 👨‍💻 Author
 
 Built by **Yas** as part of a technical evaluation for a Junior Laravel Developer position.
- 
-> *"AI was used as a tool to assist development — all logic and decisions were understood and implemented by the developer."*
 
-Built by **Yas** as part of a technical evaluation for a Junior Laravel Developer position.
-
-> *"AI was used as a tool to assist development — all logic and decisions were understood and implemented by the developer."*
+> _"AI was used as a tool to assist development — all logic and decisions were understood and implemented by the developer."_

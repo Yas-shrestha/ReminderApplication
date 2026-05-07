@@ -28,6 +28,7 @@ class Reminder extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    // Automatically set the user_id when creating a reminder if not already set while creating through filament
     protected static function booted(): void
     {
         static::creating(function ($reminder) {
