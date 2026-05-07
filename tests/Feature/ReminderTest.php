@@ -11,10 +11,11 @@ class ReminderTest extends TestCase
 {
     use RefreshDatabase;
 
+
     private User $user;
     private string $token;
 
-    // setup a user and token for authenticated requests
+    // setup a user and token for authenticated requests this will run before each test method
     protected function setUp(): void
     {
         parent::setUp();
