@@ -105,6 +105,8 @@ Authorization: Bearer your_token_here
 | PUT    | `/api/reminders/{id}` | Update a reminder      |
 | DELETE | `/api/reminders/{id}` | Delete a reminder      |
 
+addition Api route for Login and Register is created and all of these routes and operation are tested via PostMan
+
 ### Example Request (Create Reminder)
 
 ```json
@@ -137,7 +139,7 @@ This is the heart of the system:
 1. A **scheduled job** runs every minute in the background
 2. It looks for reminders where the time has passed **and** the email hasn't been sent yet
 3. It sends the email and marks the reminder as **sent**
-4. If the server was down and a reminder was missed — **don't worry!** When the server comes back up, it will still send the email because `is_sent` is still `false`
+4. If the server was down and a reminder was missed — **don't worry!** When the server comes back up, it will still send the email because `isSent` is still `false`
 
 ### To run the scheduler locally:
 
