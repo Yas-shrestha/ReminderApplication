@@ -2,14 +2,14 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Reminder;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Model>
+ * @extends Factory<Reminder>
  */
-class ReminderFactorFactory extends Factory
+class ReminderFactory extends Factory
 {
     /**
      * Define the model's default state.
